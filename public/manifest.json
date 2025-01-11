@@ -1,0 +1,9 @@
+{
+  "name": "Wonderland Technical Challenge",
+  "short_name": "Wonderland",
+  "description": "Wonderland Technical Challenge",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50"
+}
