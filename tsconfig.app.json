@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
+      "@interfaces/*": ["./src/interfaces/*"],
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@pages/*": ["./src/pages/*"],
@@ -8,6 +9,8 @@
       "@types/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "@theme/*": ["./src/theme/*"],
+      "@store/*": ["./src/store/*"],
+    
     },
     
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
