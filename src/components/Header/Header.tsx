@@ -1,9 +1,7 @@
-import { AppBar, Button, Container, Toolbar, Box, Typography, useTheme } from '@mui/material';
+import { AppBar, Container, Toolbar, Box } from '@mui/material';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Header = () => {
-  const theme = useTheme();
-  const isWalletConnected = false;
-
   return (
     <AppBar position='fixed'>
       <Container maxWidth='xl'>
@@ -16,17 +14,7 @@ const Header = () => {
               flexGrow: 1,
             }}
           >
-            {isWalletConnected && (
-              <Typography variant='body1'>Account balance: {0.000000314} $QUIZ</Typography>
-            )}
-
-            <Button
-              sx={{ ml: 3, backgroundColor: theme.palette.secondary.main }}
-              variant='contained'
-              aria-label='Connect to wallet'
-            >
-              {isWalletConnected ? '0xAdress' : 'CONNECT WALLET'}
-            </Button>
+            <ConnectButton />
           </Box>
         </Toolbar>
       </Container>
