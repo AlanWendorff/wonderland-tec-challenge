@@ -77,14 +77,15 @@ const Transfer = () => {
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Button
-            variant='contained'
             color='primary'
-            sx={{ width: '48%' }}
+            variant='contained'
+            aria-label='approve token balance'
             disabled={approveStatus.isPending || approveStatus.isConfirming}
             onClick={() => {
               handleApprove(walletAddress, selectedToken);
               handleIsSnackbarOpen();
             }}
+            sx={{ width: '48%' }}
           >
             {approveStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
@@ -98,14 +99,15 @@ const Transfer = () => {
           </Button>
 
           <Button
-            variant='contained'
             color='secondary'
-            sx={{ width: '48%' }}
+            variant='contained'
+            aria-label='transfer token balance'
             disabled={txStatus.isPending || txStatus.isConfirming}
             onClick={() => {
               handleTransfer(walletAddress, selectedToken);
               handleIsSnackbarOpen();
             }}
+            sx={{ width: '48%' }}
           >
             {txStatus.isPending ? (
               <Box display='flex' justifyContent='center'>

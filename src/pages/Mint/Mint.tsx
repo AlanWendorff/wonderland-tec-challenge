@@ -58,10 +58,11 @@ const Mint = () => {
       />
 
       <Button
+        fullWidth
         variant='contained'
+        aria-label='mint token'
         onClick={() => handleMintToken(selectedToken)}
         disabled={isPending || isConfirming}
-        fullWidth
       >
         {isPending ? (
           <Box display='flex' justifyContent='center'>

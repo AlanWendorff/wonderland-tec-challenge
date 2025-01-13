@@ -18,7 +18,14 @@ const NotFound = () => (
     <Typography variant='h4' color='text.secondary'>
       404: Not found.
     </Typography>
-    <Button component={Link} to={ROOT} variant='contained' color='primary' sx={{ mt: 2 }}>
+    <Button
+      color='primary'
+      variant='contained'
+      aria-label='go to home'
+      component={Link}
+      sx={{ mt: 2 }}
+      to={ROOT}
+    >
       Go to Home
     </Button>
   </Box>
