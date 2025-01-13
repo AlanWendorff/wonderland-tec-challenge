@@ -18,29 +18,29 @@ const useGetBalance = (): IBalancesReturn => {
 
   const chainName = chain?.name ?? 'dai';
 
-  const tokens = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
+  const { dai, usdc } = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
 
   const { data: daiBalance, isLoading: isLoadingDai } = useReadContract({
-    address: tokens.dai.contract.address,
-    abi: tokens.dai.contract.abi,
+    address: dai.contract.address,
+    abi: dai.contract.abi,
     functionName: 'balanceOf',
     args: [address],
   });
 
   const { data: usdcBalance, isLoading: isLoadingUsdc } = useReadContract({
-    address: tokens.usdc.contract.address,
-    abi: tokens.usdc.contract.abi,
+    address: usdc.contract.address,
+    abi: usdc.contract.abi,
     functionName: 'balanceOf',
     args: [address],
   });
 
   return {
     dai: {
-      balance: isLoadingDai ? 0 : parseFloat(formatUnits(daiBalance as bigint, 18)),
+      balance: isLoadingDai ? 0 : parseFloat(formatUnits(daiBalance as bigint, dai.decimals)),
       isLoading: isLoadingDai,
     },
     usdc: {
-      balance: isLoadingUsdc ? 0 : parseFloat(formatUnits(usdcBalance as bigint, 6)),
+      balance: isLoadingUsdc ? 0 : parseFloat(formatUnits(usdcBalance as bigint, usdc.decimals)),
       isLoading: isLoadingUsdc,
     },
   };

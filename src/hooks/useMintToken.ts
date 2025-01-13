@@ -1,8 +1,10 @@
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
+import { toast } from 'react-toastify';
+import { parseUnits } from 'viem';
+import { useEffect } from 'react';
 import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
 import TChainName from '../types/chainNames.type';
 import TTokenNames from '../types/tokenNames.type';
-import { parseEther } from 'viem';
 
 interface IUseMintTokenReturn {
   isConfirming: boolean;
@@ -24,14 +26,25 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
   });
 
   const handleMintToken = async (tokenName: TTokenNames) => {
-    const { contract } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
+    if (!amount) {
+      toast.error('Specify the amount');
+      return;
+    }
+
+    const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
 
     writeContract({
       ...contract,
       functionName: 'mint',
-      args: [address, parseEther(amount)],
+      args: [address, parseUnits(amount, decimals)],
     });
   };
+
+  useEffect(() => {
+    if (isConfirmed) {
+      toast.success('¡Transfer successful!');
+    }
+  }, [isConfirmed]);
 
   return {
     isConfirming,

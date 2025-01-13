@@ -9,6 +9,7 @@ import Layout from '@components/Layout';
 import { store } from '@store/app.store';
 import theme from '@theme/theme';
 import '@rainbow-me/rainbowkit/styles.css';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,14 @@ const App = () => (
       <WagmiProvider config={CONFIG}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider>
+            <ToastContainer
+              role='alert'
+              position='top-right'
+              hideProgressBar={false}
+              newestOnTop={true}
+              transition={Slide}
+              autoClose={3000}
+            />
             <Layout />
           </RainbowKitProvider>
         </QueryClientProvider>

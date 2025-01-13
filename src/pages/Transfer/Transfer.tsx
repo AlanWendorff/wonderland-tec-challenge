@@ -11,15 +11,14 @@ import {
 } from '@mui/material';
 import { TOKEN_OPTIONS } from '@constants/web3';
 import TTokenNames from '../../types/tokenNames.type';
-import NotifySuccess from '@components/NotifySuccess';
 import useTransfer from '@hooks/useTransfer';
 import useApprove from '@hooks/useApprove';
 
 const Transfer = () => {
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('');
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState<string | null>(null);
 
   const { txStatus, handleTransfer } = useTransfer({ amount });
   const { approveStatus, handleApprove } = useApprove({ amount });
@@ -118,18 +117,6 @@ const Transfer = () => {
               `Transfer ${selectedToken.toUpperCase()}`
             )}
           </Button>
-
-          <NotifySuccess
-            open={isSnackbarOpen && approveStatus.isConfirmed}
-            onClose={handleIsSnackbarOpen}
-            text='¡Approve successful!'
-          />
-
-          <NotifySuccess
-            open={isSnackbarOpen && txStatus.isConfirmed}
-            onClose={handleIsSnackbarOpen}
-            text='¡Transfer successful!'
-          />
         </Box>
       </Box>
     </Container>
