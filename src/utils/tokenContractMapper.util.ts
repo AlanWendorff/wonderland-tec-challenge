@@ -10,22 +10,28 @@ import USDC_CONTRACT_SEPOLIA from '../abis/sepolia/usdcContract.abi';
 const TOKEN_CONTRACT_MAPPER = {
   Sepolia: {
     dai: {
-      address: DAI_CONTRACT_ADDRESS_SEPOLIA,
-      abi: DAI_CONTRACT_SEPOLIA,
+      contract: {
+        address: DAI_CONTRACT_ADDRESS_SEPOLIA,
+        abi: DAI_CONTRACT_SEPOLIA,
+      },
+      decimals: 18,
     },
     usdc: {
-      address: USDC_CONTRACT_ADDRESS_SEPOLIA,
-      abi: USDC_CONTRACT_SEPOLIA,
+      contract: { address: USDC_CONTRACT_ADDRESS_SEPOLIA, abi: USDC_CONTRACT_SEPOLIA },
+      decimals: 6,
     },
   },
   Mumbai: {
     dai: {
-      address: DAI_CONTRACT_ADDRESS_MUMBAI,
-      abi: DAI_CONTRACT_SEPOLIA, // to do change to mumbai
+      contract: {
+        address: DAI_CONTRACT_ADDRESS_MUMBAI,
+        abi: DAI_CONTRACT_SEPOLIA,
+      },
+      decimals: 18,
     },
     usdc: {
-      address: USDC_CONTRACT_ADDRESS_MUMBAI,
-      abi: USDC_CONTRACT_SEPOLIA, // to do change to mumbai
+      contract: { address: USDC_CONTRACT_ADDRESS_MUMBAI, abi: USDC_CONTRACT_SEPOLIA },
+      decimals: 6,
     },
   },
 };
