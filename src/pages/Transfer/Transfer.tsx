@@ -9,10 +9,11 @@ import {
   Select,
   CircularProgress,
 } from '@mui/material';
-import TTokenNames from '../../types/tokenNames.type';
 import { TOKEN_OPTIONS } from '@constants/web3';
-import useTransfer from '@hooks/useTransfer';
+import TTokenNames from '../../types/tokenNames.type';
 import NotifySuccess from '@components/NotifySuccess';
+import useTransfer from '@hooks/useTransfer';
+import useApprove from '@hooks/useApprove';
 
 const Transfer = () => {
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
@@ -20,7 +21,8 @@ const Transfer = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [amount, setAmount] = useState('');
 
-  const { isConfirming, isConfirmed, isPending, handleTransfer } = useTransfer({ amount });
+  const { txStatus, handleTransfer } = useTransfer({ amount });
+  const { approveStatus, handleApprove } = useApprove({ amount });
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setWalletAddress(event.target.value);
@@ -75,25 +77,42 @@ const Transfer = () => {
         />
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button variant='contained' color='primary' sx={{ width: '48%' }}>
-            Approve
+          <Button
+            variant='contained'
+            color='primary'
+            sx={{ width: '48%' }}
+            disabled={approveStatus.isPending || approveStatus.isConfirming}
+            onClick={() => {
+              handleApprove(walletAddress, selectedToken);
+              handleIsSnackbarOpen();
+            }}
+          >
+            {approveStatus.isPending ? (
+              <Box display='flex' justifyContent='center'>
+                <CircularProgress size={28} />
+              </Box>
+            ) : approveStatus.isConfirming ? (
+              'Confirming...'
+            ) : (
+              `Approve`
+            )}
           </Button>
 
           <Button
             variant='contained'
             color='secondary'
+            sx={{ width: '48%' }}
+            disabled={txStatus.isPending || txStatus.isConfirming}
             onClick={() => {
               handleTransfer(walletAddress, selectedToken);
               handleIsSnackbarOpen();
             }}
-            sx={{ width: '48%' }}
-            disabled={isPending || isConfirming}
           >
-            {isPending ? (
+            {txStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
                 <CircularProgress size={28} />
               </Box>
-            ) : isConfirming ? (
+            ) : txStatus.isConfirming ? (
               'Confirming...'
             ) : (
               `Transfer ${selectedToken.toUpperCase()}`
@@ -101,7 +120,13 @@ const Transfer = () => {
           </Button>
 
           <NotifySuccess
-            open={isSnackbarOpen && isConfirmed}
+            open={isSnackbarOpen && approveStatus.isConfirmed}
+            onClose={handleIsSnackbarOpen}
+            text='¡Approve successful!'
+          />
+
+          <NotifySuccess
+            open={isSnackbarOpen && txStatus.isConfirmed}
             onClose={handleIsSnackbarOpen}
             text='¡Transfer successful!'
           />

@@ -4,20 +4,20 @@ import TChainName from '../types/chainNames.type';
 import TTokenNames from '../types/tokenNames.type';
 import { parseUnits } from 'viem';
 
-interface IuseTransferReturn {
-  txStatus: {
+interface IuseApproveReturn {
+  approveStatus: {
     isConfirming: boolean;
     isConfirmed: boolean;
     isPending: boolean;
   };
-  handleTransfer: (targetAddress: string, tokenName: TTokenNames) => void;
+  handleApprove: (spender: string, tokenName: TTokenNames) => void;
 }
 
-interface IUseTransferProps {
+interface IUseApproveProps {
   amount: string;
 }
 
-const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
+const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
   const { chain } = useAccount();
 
   const { data: hash, isPending, writeContract } = useWriteContract();
@@ -25,25 +25,25 @@ const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
     hash,
   });
 
-  const handleTransfer = async (targetAddress: string, tokenName: TTokenNames) => {
-    //tested with from 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD to 0xE9b11c9586a1Ec25EABeb2083f93b118FFD8be53
+  const handleApprove = async (spender: string, tokenName: TTokenNames) => {
+    //tested with 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD
     const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
 
     writeContract({
       ...contract,
-      functionName: 'transfer',
-      args: [targetAddress, parseUnits(amount, decimals)],
+      functionName: 'approve',
+      args: [spender, parseUnits(amount, decimals)],
     });
   };
 
   return {
-    txStatus: {
+    approveStatus: {
       isConfirming,
       isConfirmed,
       isPending,
     },
-    handleTransfer,
+    handleApprove,
   };
 };
 
-export default useTransfer;
+export default useApprove;
