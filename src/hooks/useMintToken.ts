@@ -24,7 +24,7 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
   });
 
   const handleMintToken = async (tokenName: TTokenNames) => {
-    const contract = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
+    const { contract } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
 
     writeContract({
       ...contract,

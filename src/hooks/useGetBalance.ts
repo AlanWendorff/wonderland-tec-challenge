@@ -21,15 +21,15 @@ const useGetBalance = (): IBalancesReturn => {
   const tokens = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
 
   const { data: daiBalance, isLoading: isLoadingDai } = useReadContract({
-    address: tokens.dai.address,
-    abi: tokens.dai.abi,
+    address: tokens.dai.contract.address,
+    abi: tokens.dai.contract.abi,
     functionName: 'balanceOf',
     args: [address],
   });
 
   const { data: usdcBalance, isLoading: isLoadingUsdc } = useReadContract({
-    address: tokens.usdc.address,
-    abi: tokens.usdc.abi,
+    address: tokens.usdc.contract.address,
+    abi: tokens.usdc.contract.abi,
     functionName: 'balanceOf',
     args: [address],
   });

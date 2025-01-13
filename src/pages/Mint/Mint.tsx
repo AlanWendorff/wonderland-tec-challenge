@@ -11,11 +11,13 @@ import {
 import TTokenNames from '../../types/tokenNames.type';
 import { useState } from 'react';
 import { TOKEN_OPTIONS } from '@constants/web3';
+import NotifySuccess from '@components/NotifySuccess';
 
 const Mint = () => {
   const [amount, setAmount] = useState('');
   const { isConfirming, isConfirmed, isPending, handleMintToken } = useMintToken({ amount });
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -24,6 +26,10 @@ const Mint = () => {
     if (value === '' || (!isNaN(parsedValue) && parsedValue >= 0)) {
       setAmount(String(parsedValue));
     }
+  };
+
+  const handleIsSnackbarOpen = () => {
+    setIsSnackbarOpen(!isSnackbarOpen);
   };
 
   return (
@@ -63,24 +69,22 @@ const Mint = () => {
         disabled={isPending || isConfirming}
         fullWidth
       >
-        {isPending
-          ? 'Executing...'
-          : isConfirming
-            ? 'Confirming...'
-            : `Mint ${selectedToken.toUpperCase()}`}
+        {isPending ? (
+          <Box display='flex' justifyContent='center'>
+            <CircularProgress size={28} />
+          </Box>
+        ) : isConfirming ? (
+          'Confirming...'
+        ) : (
+          `Mint ${selectedToken.toUpperCase()}`
+        )}
       </Button>
 
-      {isConfirmed && (
-        <Typography variant='body1' color='success.main' textAlign='center'>
-          ¡Mint success!
-        </Typography>
-      )}
-
-      {(isPending || isConfirming) && (
-        <Box display='flex' justifyContent='center'>
-          <CircularProgress />
-        </Box>
-      )}
+      <NotifySuccess
+        open={isSnackbarOpen && isConfirmed}
+        onClose={handleIsSnackbarOpen}
+        text='¡Mint successful!'
+      />
     </Box>
   );
 };
