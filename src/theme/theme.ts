@@ -3,18 +3,18 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#121212', // Color primario original (oscuro)
+      main: '#121212',
     },
     secondary: {
-      main: '#9C2524', // Color secundario original (rojo)
+      main: '#9C2524',
     },
     background: {
-      default: '#F5F5F5', // Fondo claro
-      paper: '#FFFFFF', // Fondo del contenido
+      default: '#F5F5F5',
+      paper: '#FFFFFF',
     },
     text: {
-      primary: '#212121', // Texto principal (oscuro)
-      secondary: '#757575', // Texto secundario
+      primary: '#212121',
+      secondary: '#757575',
     },
   },
   typography: {
@@ -22,7 +22,7 @@ const theme = createTheme({
     h5: {
       fontSize: '2rem',
       fontWeight: 700,
-      color: '#333', // Color del título principal
+      color: '#333',
     },
     body1: {
       fontSize: '1rem',
@@ -41,24 +41,24 @@ const theme = createTheme({
           overflow: 'hidden',
         },
         body: {
-          backgroundColor: '#FAFAFA', // Fondo más claro
+          backgroundColor: '#FAFAFA',
           height: '100vh',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center', // Centrar los componentes
+          alignItems: 'center',
         },
         h5: {
-          color: '#333', // Cambiar el color de los h5
+          color: '#333',
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)', // Sombra sutil en botones
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
           '&:hover': {
-            backgroundColor: '#9C2524', // Cambio de color de hover (secundario)
-            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)', // Aumentar la sombra al hacer hover
+            backgroundColor: '#9C2524',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
           },
         },
       },
@@ -66,15 +66,15 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', // Sombra ligera en contenedores
-          padding: '1rem', // Relleno más elegante
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          padding: '1rem',
         },
       },
     },
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color: '#121212', // Usar el color primario para los progresos
+          color: '#121212',
         },
       },
     },
