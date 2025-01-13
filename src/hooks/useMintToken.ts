@@ -11,7 +11,11 @@ interface IUseMintTokenReturn {
   handleMintToken: (tokenName: TTokenNames) => void;
 }
 
-const useMintToken = (): IUseMintTokenReturn => {
+interface IUseMintTokenProps {
+  amount: string;
+}
+
+const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
   const { address, chain } = useAccount();
 
   const { data: hash, isPending, writeContract } = useWriteContract();
@@ -25,7 +29,7 @@ const useMintToken = (): IUseMintTokenReturn => {
     writeContract({
       ...contract,
       functionName: 'mint',
-      args: [address, parseEther('100')],
+      args: [address, parseEther(amount)],
     });
   };
 

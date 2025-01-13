@@ -1,5 +1,5 @@
-import { selectIsWalletConnected } from '@store/account/account.selectors';
-import { AppBar, Container, Toolbar, Box, Typography } from '@mui/material';
+import { selectIsCorrectNetwork, selectIsWalletConnected } from '@store/account/account.selectors';
+import { AppBar, Container, Toolbar, Box } from '@mui/material';
 import { MINT, ROOT, TRANSFER } from '@constants/routes';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import NavLink from './components/NavLink';
 
 const Header = () => {
   const isWalletConnected = useSelector(selectIsWalletConnected);
+  const isCorrectNetwork = useSelector(selectIsCorrectNetwork);
 
   return (
     <AppBar position='fixed'>
@@ -29,13 +30,7 @@ const Header = () => {
 
             <Box sx={{ flexGrow: 1 }} />
 
-            {isWalletConnected ? (
-              <Balance />
-            ) : (
-              <Typography variant='body1' color='inherit' sx={{ px: 5 }}>
-                Connect wallet to see your balance
-              </Typography>
-            )}
+            {isWalletConnected && isCorrectNetwork && <Balance />}
             <ConnectButton />
           </Box>
         </Toolbar>
