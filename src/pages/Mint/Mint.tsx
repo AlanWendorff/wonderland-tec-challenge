@@ -1,12 +1,30 @@
 import useMintToken from '@hooks/useMintToken';
-import { Box, Typography, Select, MenuItem, Button, CircularProgress } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Select,
+  MenuItem,
+  Button,
+  CircularProgress,
+  TextField,
+} from '@mui/material';
 import TTokenNames from '../../types/tokenNames.type';
 import { useState } from 'react';
-import TOKEN_OPTIONS from '@constants/web3';
+import { TOKEN_OPTIONS } from '@constants/web3';
 
 const Mint = () => {
-  const { isConfirming, isConfirmed, isPending, handleMintToken } = useMintToken();
+  const [amount, setAmount] = useState('');
+  const { isConfirming, isConfirmed, isPending, handleMintToken } = useMintToken({ amount });
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const parsedValue = parseFloat(value);
+
+    if (value === '' || (!isNaN(parsedValue) && parsedValue >= 0)) {
+      setAmount(String(parsedValue));
+    }
+  };
 
   return (
     <Box display='flex' flexDirection='column' gap={3} maxWidth='400px' margin='auto'>
@@ -30,6 +48,14 @@ const Mint = () => {
           </MenuItem>
         ))}
       </Select>
+
+      <TextField
+        type='number'
+        value={amount}
+        onChange={handleAmountChange}
+        placeholder='Write amount'
+        fullWidth
+      />
 
       <Button
         variant='contained'
