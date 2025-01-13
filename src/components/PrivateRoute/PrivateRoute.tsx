@@ -6,7 +6,6 @@ import { FC } from 'react';
 
 const PrivateRoute: FC<RouteProps> = () => {
   const isWalletConnected = useSelector(selectIsWalletConnected);
-  console.log(isWalletConnected);
 
   if (!isWalletConnected) {
     return <Navigate to={ROOT} replace />;

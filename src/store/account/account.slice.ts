@@ -16,8 +16,6 @@ export const accountSlice = createSlice({
       state.address = action.payload;
     },
     setIsWalletConnected: (state, action: PayloadAction<boolean>) => {
-      console.log(action.payload);
-
       state.isWalletConnected = action.payload;
     },
   },
