@@ -10,7 +10,6 @@ import useGetBalance from './useGetBalance';
 interface IuseApproveReturn {
   approveStatus: {
     isConfirming: boolean;
-    isConfirmed: boolean;
     isPending: boolean;
   };
   handleApprove: (spender: string | null, tokenName: TTokenNames) => void;
@@ -70,7 +69,6 @@ const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
   return {
     approveStatus: {
       isConfirming,
-      isConfirmed,
       isPending,
     },
     handleApprove,

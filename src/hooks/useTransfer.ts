@@ -10,7 +10,6 @@ import useGetBalance from './useGetBalance';
 interface IuseTransferReturn {
   txStatus: {
     isConfirming: boolean;
-    isConfirmed: boolean;
     isPending: boolean;
   };
   handleTransfer: (targetAddress: string | null, tokenName: TTokenNames) => void;
@@ -79,7 +78,6 @@ const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
   return {
     txStatus: {
       isConfirming,
-      isConfirmed,
       isPending,
     },
     handleTransfer,

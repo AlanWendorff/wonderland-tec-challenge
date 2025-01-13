@@ -8,7 +8,6 @@ import TTokenNames from '../types/tokenNames.type';
 
 interface IUseMintTokenReturn {
   isConfirming: boolean;
-  isConfirmed: boolean;
   isPending: boolean;
   handleMintToken: (tokenName: TTokenNames) => void;
 }
@@ -42,13 +41,12 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
 
   useEffect(() => {
     if (isConfirmed) {
-      toast.success('¡Transfer successful!');
+      toast.success('¡Mint successful!');
     }
   }, [isConfirmed]);
 
   return {
     isConfirming,
-    isConfirmed,
     isPending,
     handleMintToken,
   };

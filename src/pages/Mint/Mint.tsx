@@ -11,13 +11,11 @@ import {
 import TTokenNames from '../../types/tokenNames.type';
 import { useState } from 'react';
 import { TOKEN_OPTIONS } from '@constants/web3';
-import NotifySuccess from '@components/NotifySuccess';
 
 const Mint = () => {
   const [amount, setAmount] = useState('');
-  const { isConfirming, isConfirmed, isPending, handleMintToken } = useMintToken({ amount });
+  const { isConfirming, isPending, handleMintToken } = useMintToken({ amount });
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -26,10 +24,6 @@ const Mint = () => {
     if (value === '' || (!isNaN(parsedValue) && parsedValue >= 0)) {
       setAmount(String(parsedValue));
     }
-  };
-
-  const handleIsSnackbarOpen = () => {
-    setIsSnackbarOpen(!isSnackbarOpen);
   };
 
   return (
@@ -79,12 +73,6 @@ const Mint = () => {
           `Mint ${selectedToken.toUpperCase()}`
         )}
       </Button>
-
-      <NotifySuccess
-        open={isSnackbarOpen && isConfirmed}
-        onClose={handleIsSnackbarOpen}
-        text='¡Mint successful!'
-      />
     </Box>
   );
 };
