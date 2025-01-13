@@ -1,23 +1,24 @@
 import { useAccount, useReadContract } from 'wagmi';
-import { useDispatch } from 'react-redux';
 import { formatUnits } from 'viem';
 import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
-import {
-  setDaiBalance,
-  setUsdcBalance,
-  setLoadingDai,
-  setLoadingUsdc,
-} from '@store/balances/balances.slice';
-import IBalancesState from '@interfaces/balancesState.interface';
 import TChainName from '../types/chainNames.type';
 
-type TTokenBalancesReturn = IBalancesState;
+interface ITokenData {
+  balance: number;
+  isLoading: boolean;
+}
 
-const useGetBalance = (): TTokenBalancesReturn => {
-  const dispatch = useDispatch();
+interface IBalancesReturn {
+  dai: ITokenData;
+  usdc: ITokenData;
+}
+
+const useGetBalance = (): IBalancesReturn => {
   const { address, chain } = useAccount();
 
-  const tokens = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName];
+  const chainName = chain?.name ?? 'dai';
+
+  const tokens = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
 
   const { data: daiBalance, isLoading: isLoadingDai } = useReadContract({
     address: tokens.dai.address,
@@ -32,18 +33,6 @@ const useGetBalance = (): TTokenBalancesReturn => {
     functionName: 'balanceOf',
     args: [address],
   });
-
-  if (isLoadingDai) {
-    dispatch(setLoadingDai());
-  } else {
-    dispatch(setDaiBalance(parseFloat(formatUnits(daiBalance as bigint, 18))));
-  }
-
-  if (isLoadingUsdc) {
-    dispatch(setLoadingUsdc());
-  } else {
-    dispatch(setUsdcBalance(parseFloat(formatUnits(usdcBalance as bigint, 6))));
-  }
 
   return {
     dai: {

@@ -2,29 +2,30 @@ import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagm
 import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
 import TChainName from '../types/chainNames.type';
 import TTokenNames from '../types/tokenNames.type';
+import { parseEther } from 'viem';
 
 interface IUseMintTokenReturn {
   isConfirming: boolean;
   isConfirmed: boolean;
   isPending: boolean;
-  handleMintToken: (tokenId: number, tokenName: TTokenNames) => void;
+  handleMintToken: (tokenName: TTokenNames) => void;
 }
 
 const useMintToken = (): IUseMintTokenReturn => {
-  const { chain } = useAccount();
+  const { address, chain } = useAccount();
 
   const { data: hash, isPending, writeContract } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
     hash,
   });
 
-  const handleMintToken = async (tokenId: number, tokenName: TTokenNames) => {
+  const handleMintToken = async (tokenName: TTokenNames) => {
     const contract = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
 
     writeContract({
       ...contract,
       functionName: 'mint',
-      args: [tokenId], //... to do
+      args: [address, parseEther('100')],
     });
   };
 
