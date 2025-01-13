@@ -1154,7 +1154,7 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@rainbow-me/rainbowkit@^2.2.1":
+"@rainbow-me/rainbowkit@2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-2.2.1.tgz#1ad672aa87be3e8e4135bc12d13b03cc0a784221"
   integrity sha512-DvWbczNmm3BRr+EPZFwDK2vJRYxzSgHL0XzasL4RGMPsPuuRe9meLiTrznPqJvut7yNmib/ROqtblWJuxBvIKA==
@@ -5729,7 +5729,7 @@ valtio@1.11.2:
     proxy-compare "2.5.1"
     use-sync-external-store "1.2.0"
 
-viem@2.x, viem@^2.1.1:
+viem@^2.1.1, viem@^2.22.7:
   version "2.22.7"
   resolved "https://registry.yarnpkg.com/viem/-/viem-2.22.7.tgz#70b92859a3401fa056f86a13c8d2befffde8bb2f"
   integrity sha512-heNQKOqpgAhdvu5xBAgWCqNVDkC6FfQyQ63+JVSUomOzmnbHAO1FKf4/JRe/s1McU1F4HkgjytOunQS9mbBD2g==

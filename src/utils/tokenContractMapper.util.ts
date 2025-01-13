@@ -4,8 +4,8 @@ import {
   DAI_CONTRACT_ADDRESS_MUMBAI,
   USDC_CONTRACT_ADDRESS_MUMBAI,
 } from '@constants/env';
-import DAI_CONTRACT_SEPOLIA from '../contracts/sepolia/daiContract.abi';
-import USDC_CONTRACT_SEPOLIA from '../contracts/sepolia/usdcContract.abi';
+import DAI_CONTRACT_SEPOLIA from '../abis/sepolia/daiContract.abi';
+import USDC_CONTRACT_SEPOLIA from '../abis/sepolia/usdcContract.abi';
 
 const TOKEN_CONTRACT_MAPPER = {
   Sepolia: {
