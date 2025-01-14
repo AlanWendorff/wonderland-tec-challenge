@@ -36,7 +36,8 @@ const Mint = () => {
         value={selectedToken}
         onChange={(e) => setSelectedToken(e.target.value as TTokenNames)}
         fullWidth
-        displayEmpty>
+        displayEmpty
+      >
         <MenuItem value='' disabled>
           Select a token
         </MenuItem>
@@ -61,7 +62,8 @@ const Mint = () => {
         variant='contained'
         aria-label='mint token'
         onClick={() => handleMintToken(selectedToken)}
-        disabled={isPending || isConfirming}>
+        disabled={isPending || isConfirming}
+      >
         {isPending ? (
           <Box display='flex' justifyContent='center'>
             <CircularProgress size={28} />

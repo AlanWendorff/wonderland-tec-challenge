@@ -18,7 +18,8 @@ const NavLink = ({ to, children }: INavLinkProps) => (
       '&:hover': {
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
       },
-    }}>
+    }}
+  >
     {children}
   </Button>
 );
