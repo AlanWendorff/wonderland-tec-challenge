@@ -19,19 +19,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',
-    h5: {
-      fontSize: '2rem',
-      fontWeight: 700,
-      color: '#333',
-    },
-    body1: {
-      fontSize: '1rem',
-      color: '#333',
-    },
-    button: {
-      fontSize: '1rem',
-      fontWeight: 600,
-    },
   },
   components: {
     MuiCssBaseline: {
@@ -79,6 +66,41 @@ const theme = createTheme({
       },
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
+
+theme.typography = {
+  ...theme.typography,
+  h5: {
+    fontSize: '2rem',
+    fontWeight: 700,
+    color: '#333',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 'calc(2rem - 3px)',
+    },
+  },
+  subtitle1: {
+    fontSize: '.9rem',
+    color: '#333',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 'calc(1rem - 3px)',
+    },
+  },
+  button: {
+    fontSize: '1rem',
+    fontWeight: 600,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 'calc(1rem - 3px)',
+    },
+  },
+};
 
 export default theme;

@@ -14,7 +14,7 @@ import { TOKEN_OPTIONS } from '@constants/web3';
 
 const Mint = () => {
   const [amount, setAmount] = useState('');
-  const { isConfirming, isPending, handleMintToken } = useMintToken({ amount });
+  const { isConfirming, isPending, isError, handleMintToken } = useMintToken({ amount });
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,9 +64,9 @@ const Mint = () => {
         onClick={() => handleMintToken(selectedToken)}
         disabled={isPending || isConfirming}
       >
-        {isPending ? (
+        {isPending && !isError ? (
           <Box display='flex' justifyContent='center'>
-            <CircularProgress size={28} />
+            <CircularProgress size={18} />
           </Box>
         ) : isConfirming ? (
           'Confirming...'
