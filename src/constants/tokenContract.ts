@@ -7,7 +7,7 @@ import {
 import DAI_CONTRACT_SEPOLIA from '../abis/sepolia/daiContract.abi';
 import USDC_CONTRACT_SEPOLIA from '../abis/sepolia/usdcContract.abi';
 
-const TOKEN_CONTRACT_MAPPER = {
+const TOKEN_CONTRACT = {
   Sepolia: {
     dai: {
       contract: {
@@ -36,4 +36,4 @@ const TOKEN_CONTRACT_MAPPER = {
   },
 };
 
-export default TOKEN_CONTRACT_MAPPER;
+export default TOKEN_CONTRACT;

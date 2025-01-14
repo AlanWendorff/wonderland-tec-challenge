@@ -2,7 +2,7 @@ import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagm
 import { toast } from 'react-toastify';
 import { parseUnits } from 'viem';
 import { useEffect } from 'react';
-import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
+import TOKEN_CONTRACT from '@constants/tokenContract';
 import TChainName from '../types/chainNames.type';
 import TTokenNames from '../types/tokenNames.type';
 
@@ -35,7 +35,7 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
       return;
     }
 
-    const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
+    const { contract, decimals } = TOKEN_CONTRACT[chain?.name as TChainName][tokenName];
     //owner 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD
     writeContract({
       ...contract,
