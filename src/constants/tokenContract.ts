@@ -7,7 +7,7 @@ import {
 import DAI_CONTRACT_SEPOLIA from '../abis/sepolia/daiContract.abi';
 import USDC_CONTRACT_SEPOLIA from '../abis/sepolia/usdcContract.abi';
 
-const TOKEN_CONTRACT_MAPPER = {
+const TOKEN_CONTRACT = {
   Sepolia: {
     dai: {
       contract: {
@@ -25,7 +25,7 @@ const TOKEN_CONTRACT_MAPPER = {
     dai: {
       contract: {
         address: DAI_CONTRACT_ADDRESS_MUMBAI,
-        abi: DAI_CONTRACT_SEPOLIA,
+        abi: DAI_CONTRACT_SEPOLIA, // I didn't find mumbai's related token contracts and ABI's for dai and usdc
       },
       decimals: 18,
     },
@@ -36,4 +36,4 @@ const TOKEN_CONTRACT_MAPPER = {
   },
 };
 
-export default TOKEN_CONTRACT_MAPPER;
+export default TOKEN_CONTRACT;

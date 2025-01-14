@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { parseUnits } from 'viem';
 import { useEffect } from 'react';
-import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
+import TOKEN_CONTRACT from '@constants/tokenContract';
 import TTokenNames from '../types/tokenNames.type';
 import TChainName from '../types/chainNames.type';
 import useGetAllowance from './useGetAllowance';
@@ -60,7 +60,7 @@ const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
     }
 
     // owner: 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD spender: 0xE9b11c9586a1Ec25EABeb2083f93b118FFD8be53
-    const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
+    const { contract, decimals } = TOKEN_CONTRACT[chain?.name as TChainName][tokenName];
     const balance = balances[tokenName].balance;
 
     if (balance < +amount) {

@@ -9,6 +9,6 @@ export const CONFIG = getDefaultConfig({
   chains: [polygonMumbai, sepolia],
   transports: {
     [sepolia.id]: http(),
-    [polygonMumbai.id]: http(),
+    [polygonMumbai.id]: http(), // Seems like mumbai chain is not working.
   },
 });

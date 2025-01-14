@@ -1,6 +1,6 @@
 import { useAccount, useReadContract } from 'wagmi';
 import { formatUnits } from 'viem';
-import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
+import TOKEN_CONTRACT from '@constants/tokenContract';
 import TChainName from '../types/chainNames.type';
 
 interface ITokenData {
@@ -18,7 +18,7 @@ const useGetBalance = (): IUseGetBalanceReturn => {
 
   const chainName = chain?.name ?? 'dai';
 
-  const { dai, usdc } = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
+  const { dai, usdc } = TOKEN_CONTRACT[chainName as TChainName];
 
   const { data: daiBalance, isLoading: isLoadingDai } = useReadContract({
     ...dai.contract,

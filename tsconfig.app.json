@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    
+    "baseUrl": "./",
     "paths": {
       "@interfaces/*": ["./src/interfaces/*"],
       "@components/*": ["./src/components/*"],
@@ -10,7 +12,6 @@
       "@utils/*": ["./src/utils/*"],
       "@theme/*": ["./src/theme/*"],
       "@store/*": ["./src/store/*"],
-    
     },
     
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
@@ -36,8 +37,8 @@
     "noUncheckedSideEffectImports": true,
 
     /* types */
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     
   },
-  "include": ["src"]
+  "include": ["src", "./__tests__/**/**.*", "tests/**/*.ts"]
 }
