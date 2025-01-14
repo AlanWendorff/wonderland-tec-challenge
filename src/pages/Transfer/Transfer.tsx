@@ -1,3 +1,5 @@
+import { setSpender } from '@store/account/account.slice';
+import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import {
   Container,
@@ -10,21 +12,26 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { TOKEN_OPTIONS } from '@constants/web3';
+import { Address } from 'viem';
 import TTokenNames from '../../types/tokenNames.type';
 import useTransfer from '@hooks/useTransfer';
 import useApprove from '@hooks/useApprove';
 
 const Transfer = () => {
+  const dispatch = useDispatch();
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [walletAddress, setWalletAddress] = useState('');
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [amount, setAmount] = useState<string | null>(null);
+  const [amount, setAmount] = useState('');
 
   const { txStatus, handleTransfer } = useTransfer({ amount });
   const { approveStatus, handleApprove } = useApprove({ amount });
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWalletAddress(event.target.value);
+    const address = event.target.value as Address;
+
+    dispatch(setSpender(address));
+    setWalletAddress(address);
   };
 
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {

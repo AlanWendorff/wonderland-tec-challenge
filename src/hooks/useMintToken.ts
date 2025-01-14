@@ -31,7 +31,7 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
     }
 
     const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
-
+    //owner 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD
     writeContract({
       ...contract,
       functionName: 'mint',

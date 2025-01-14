@@ -5,6 +5,7 @@ import IAccountState from '@interfaces/store/account.interface';
 
 const initialState: IAccountState = {
   address: null,
+  spender: null,
   isCorrectNetwork: false,
   isWalletConnected: false,
 };
@@ -16,6 +17,9 @@ export const accountSlice = createSlice({
     setAddress: (state, action: PayloadAction<Address | null>) => {
       state.address = action.payload;
     },
+    setSpender: (state, action: PayloadAction<Address | null>) => {
+      state.spender = action.payload;
+    },
     setIsCorrectNetwork: (state, action: PayloadAction<boolean>) => {
       state.isCorrectNetwork = action.payload;
     },
@@ -25,6 +29,7 @@ export const accountSlice = createSlice({
   },
 });
 
-export const { setAddress, setIsCorrectNetwork, setIsWalletConnected } = accountSlice.actions;
+export const { setAddress, setSpender, setIsCorrectNetwork, setIsWalletConnected } =
+  accountSlice.actions;
 
 export default accountSlice.reducer;

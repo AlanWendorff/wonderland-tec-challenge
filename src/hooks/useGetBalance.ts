@@ -8,12 +8,12 @@ interface ITokenData {
   isLoading: boolean;
 }
 
-interface IBalancesReturn {
+interface IUseGetBalanceReturn {
   dai: ITokenData;
   usdc: ITokenData;
 }
 
-const useGetBalance = (): IBalancesReturn => {
+const useGetBalance = (): IUseGetBalanceReturn => {
   const { address, chain } = useAccount();
 
   const chainName = chain?.name ?? 'dai';
@@ -21,15 +21,13 @@ const useGetBalance = (): IBalancesReturn => {
   const { dai, usdc } = TOKEN_CONTRACT_MAPPER[chainName as TChainName];
 
   const { data: daiBalance, isLoading: isLoadingDai } = useReadContract({
-    address: dai.contract.address,
-    abi: dai.contract.abi,
+    ...dai.contract,
     functionName: 'balanceOf',
     args: [address],
   });
 
   const { data: usdcBalance, isLoading: isLoadingUsdc } = useReadContract({
-    address: usdc.contract.address,
-    abi: usdc.contract.abi,
+    ...usdc.contract,
     functionName: 'balanceOf',
     args: [address],
   });

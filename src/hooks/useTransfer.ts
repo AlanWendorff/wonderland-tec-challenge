@@ -1,10 +1,13 @@
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
+import { selectAddress } from '@store/account/account.selectors';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { parseUnits } from 'viem';
 import { useEffect } from 'react';
 import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
 import TTokenNames from '../types/tokenNames.type';
 import TChainName from '../types/chainNames.type';
+import useGetAllowance from './useGetAllowance';
 import useGetBalance from './useGetBalance';
 
 interface IuseTransferReturn {
@@ -12,16 +15,18 @@ interface IuseTransferReturn {
     isConfirming: boolean;
     isPending: boolean;
   };
-  handleTransfer: (targetAddress: string | null, tokenName: TTokenNames) => void;
+  handleTransfer: (targetAddress: string, tokenName: TTokenNames) => void;
 }
 
 interface IUseTransferProps {
-  amount: string | null;
+  amount: string;
 }
 
 const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
   const { chain } = useAccount();
   const { dai, usdc } = useGetBalance();
+  const { allowance } = useGetAllowance();
+  const ownerAddress = useSelector(selectAddress);
 
   const balances = {
     dai,
@@ -38,30 +43,40 @@ const useTransfer = ({ amount }: IUseTransferProps): IuseTransferReturn => {
     hash,
   });
 
-  const handleTransfer = async (targetAddress: string | null, tokenName: TTokenNames) => {
-    if (!targetAddress) {
+  const handleTransfer = async (targetAddress: string, tokenName: TTokenNames) => {
+    if (targetAddress === ownerAddress) {
+      toast.error("Addresses can't be equal!");
+      return;
+    }
+
+    if (targetAddress === '') {
       toast.error('You need to write a target address');
       return;
     }
 
-    if (!amount) {
+    if (amount === '') {
       toast.error('Specify the amount');
       return;
     }
 
-    // tested from 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD to 0xE9b11c9586a1Ec25EABeb2083f93b118FFD8be53
+    // owner: 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD spender: 0xE9b11c9586a1Ec25EABeb2083f93b118FFD8be53
     const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
     const balance = balances[tokenName].balance;
 
-    if (+amount > balance) {
-      toast.error('Not enough cash!');
+    if (balance < +amount) {
+      toast.error('Not enough money!');
+      return;
+    }
+
+    if (allowance[tokenName] < +amount) {
+      toast.error('Allowance limit!');
       return;
     }
 
     writeContract({
       ...contract,
-      functionName: 'transfer',
-      args: [targetAddress, parseUnits(amount, decimals)],
+      functionName: 'transferFrom',
+      args: [ownerAddress, targetAddress, parseUnits(amount, decimals)],
     });
   };
 

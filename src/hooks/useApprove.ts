@@ -5,53 +5,40 @@ import { parseUnits } from 'viem';
 import TOKEN_CONTRACT_MAPPER from '@utils/tokenContractMapper.util';
 import TTokenNames from '../types/tokenNames.type';
 import TChainName from '../types/chainNames.type';
-import useGetBalance from './useGetBalance';
 
 interface IuseApproveReturn {
   approveStatus: {
     isConfirming: boolean;
     isPending: boolean;
   };
-  handleApprove: (spender: string | null, tokenName: TTokenNames) => void;
+  handleApprove: (spender: string, tokenName: TTokenNames) => void;
 }
 
 interface IUseApproveProps {
-  amount: string | null;
+  amount: string;
 }
 
 const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
   const { chain } = useAccount();
-  const { dai, usdc } = useGetBalance();
-
-  const balances = {
-    dai,
-    usdc,
-  };
 
   const { data: hash, isPending, writeContract } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
     hash,
   });
 
-  const handleApprove = async (spender: string | null, tokenName: TTokenNames) => {
-    if (!spender) {
-      toast.error('You need to write a target address');
+  const handleApprove = async (spender: string, tokenName: TTokenNames) => {
+    if (spender == '') {
+      toast.error('You need to write a spender address');
       return;
     }
 
-    if (!amount) {
+    if (amount === '') {
       toast.error('Specify the amount');
       return;
     }
 
-    //tested with 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD
+    // owner: 0xEF2FAbba5efc17f3740654A6D13C765ba7B3aDAD spender: 0xE9b11c9586a1Ec25EABeb2083f93b118FFD8be53
     const { contract, decimals } = TOKEN_CONTRACT_MAPPER[chain?.name as TChainName][tokenName];
-    const balance = balances[tokenName].balance;
-
-    if (+amount > balance) {
-      toast.error('Not enough cash!');
-      return;
-    }
 
     writeContract({
       ...contract,
@@ -62,7 +49,7 @@ const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
 
   useEffect(() => {
     if (isConfirmed) {
-      toast.success('¡Transfer successful!');
+      toast.success('¡Approval successful!');
     }
   }, [isConfirmed]);
 
