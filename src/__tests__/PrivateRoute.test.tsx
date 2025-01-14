@@ -1,10 +1,10 @@
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
-import { ROOT } from '../constants/routes';
+import { ROOT } from '@constants/routes';
 import { Provider } from 'react-redux';
-import accountReducer from '../store/account/account.slice';
-import PrivateRoute from '../components/PrivateRoute';
+import accountReducer from '@store/account/account.slice';
+import PrivateRoute from '@components/PrivateRoute';
 
 describe('PrivateRoute', () => {
   const setupStore = (preloadedState: unknown) =>
