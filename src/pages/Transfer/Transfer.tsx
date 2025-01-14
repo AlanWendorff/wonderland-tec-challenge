@@ -60,7 +60,8 @@ const Transfer = () => {
           color='primary'
           variant='contained'
           aria-label='approve token balance'
-          onClick={handleSetSpender}>
+          onClick={handleSetSpender}
+        >
           Set spender
         </Button>
 
@@ -68,7 +69,8 @@ const Transfer = () => {
           value={selectedToken}
           onChange={(e) => setSelectedToken(e.target.value as TTokenNames)}
           fullWidth
-          displayEmpty>
+          displayEmpty
+        >
           <MenuItem value='' disabled>
             Select a token
           </MenuItem>
@@ -98,7 +100,8 @@ const Transfer = () => {
             onClick={() => {
               handleApprove(walletAddress, selectedToken);
             }}
-            sx={{ width: '48%' }}>
+            sx={{ width: '48%' }}
+          >
             {approveStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
                 <CircularProgress size={28} />
@@ -118,7 +121,8 @@ const Transfer = () => {
             onClick={() => {
               handleTransfer(walletAddress, selectedToken);
             }}
-            sx={{ width: '48%' }}>
+            sx={{ width: '48%' }}
+          >
             {txStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
                 <CircularProgress size={28} />

@@ -20,7 +20,8 @@ const Header = () => {
               justifyContent: 'space-between',
               alignItems: 'center',
               flexGrow: 1,
-            }}>
+            }}
+          >
             <Box sx={{ display: 'flex', gap: 1 }}>
               <NavLink to={ROOT}>Home</NavLink>
               <NavLink to={TRANSFER}>Transfer</NavLink>
