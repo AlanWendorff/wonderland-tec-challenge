@@ -60,8 +60,7 @@ const Transfer = () => {
           value={selectedToken}
           onChange={(e) => setSelectedToken(e.target.value as TTokenNames)}
           fullWidth
-          displayEmpty
-        >
+          displayEmpty>
           <MenuItem value='' disabled>
             Select a token
           </MenuItem>
@@ -92,8 +91,7 @@ const Transfer = () => {
               handleApprove(walletAddress, selectedToken);
               handleIsSnackbarOpen();
             }}
-            sx={{ width: '48%' }}
-          >
+            sx={{ width: '48%' }}>
             {approveStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
                 <CircularProgress size={28} />
@@ -114,8 +112,7 @@ const Transfer = () => {
               handleTransfer(walletAddress, selectedToken);
               handleIsSnackbarOpen();
             }}
-            sx={{ width: '48%' }}
-          >
+            sx={{ width: '48%' }}>
             {txStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
                 <CircularProgress size={28} />

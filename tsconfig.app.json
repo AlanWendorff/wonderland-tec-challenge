@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    
     "baseUrl": "./",
     "paths": {
       "@interfaces/*": ["./src/interfaces/*"],
@@ -11,9 +10,9 @@
       "@types/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "@theme/*": ["./src/theme/*"],
-      "@store/*": ["./src/store/*"],
+      "@store/*": ["./src/store/*"]
     },
-    
+
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -37,8 +36,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* types */
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
-    
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["src", "./__tests__/**/**.*", "tests/**/*.ts"]
 }

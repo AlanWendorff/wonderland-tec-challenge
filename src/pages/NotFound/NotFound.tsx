@@ -10,8 +10,7 @@ const NotFound = () => (
       alignItems: 'center',
       height: '100vh',
       flexDirection: 'column',
-    }}
-  >
+    }}>
     <Typography variant='h2' color='primary' gutterBottom>
       END OF THE ROAD :/
     </Typography>
@@ -24,8 +23,7 @@ const NotFound = () => (
       aria-label='go to home'
       component={Link}
       sx={{ mt: 2 }}
-      to={ROOT}
-    >
+      to={ROOT}>
       Go to Home
     </Button>
   </Box>
