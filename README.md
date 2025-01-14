@@ -41,6 +41,10 @@ This project utilizes the following technologies to ensure a smooth and modern d
 3. Install the dependencies:
    <pre><code>yarn</code></pre>
 
+### Configure .env file
+You have .env.example to configurate .env
+1. Copy the content and paste into a new file named as ".env" and assign a value for each variable.
+
 ### Running the Development Server
 Run the following command to start the local development server:
 <pre><code>yarn dev</code></pre>
