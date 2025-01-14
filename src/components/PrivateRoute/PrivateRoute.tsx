@@ -1,7 +1,10 @@
-import { selectIsCorrectNetwork, selectIsWalletConnected } from '@store/account/account.selectors';
+import {
+  selectIsCorrectNetwork,
+  selectIsWalletConnected,
+} from '../../store/account/account.selectors';
 import { Navigate, Outlet, RouteProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ROOT } from '@constants/routes';
+import { ROOT } from '../../constants/routes';
 import { FC } from 'react';
 
 const PrivateRoute: FC<RouteProps> = () => {

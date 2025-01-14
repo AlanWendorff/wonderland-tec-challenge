@@ -1,10 +1,18 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tsConfigPaths from 'vite-tsconfig-paths';
+import { fileURLToPath, URL } from 'url';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tsConfigPaths()],
+  plugins: [react()],
   envDir: './env',
+  resolve: {
+    alias: [
+      {
+        find: '@store',
+        replacement: fileURLToPath(new URL('./src/store', import.meta.url)),
+      },
+    ],
+  },
 });
