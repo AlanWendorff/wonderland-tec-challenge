@@ -64,6 +64,7 @@ const Mint = () => {
         onClick={() => handleMintToken(selectedToken)}
         disabled={isPending || isConfirming}
       >
+
         {isPending && !isError ? (
           <Box display='flex' justifyContent='center'>
             <CircularProgress size={18} />
