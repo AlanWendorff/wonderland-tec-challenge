@@ -43,7 +43,7 @@ This project utilizes the following technologies to ensure a smooth and modern d
 
 ### Configure .env file
 You have .env.example to configurate .env
-1. Copy the content and paste into a new file named as ".env" and assign a value for each variable.
+1. Copy the content and paste into a new file named as ".env" and assign the value for each variable.
 
 ### Running the Development Server
 Run the following command to start the local development server:
