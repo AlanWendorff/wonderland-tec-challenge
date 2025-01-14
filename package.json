@@ -9,8 +9,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "preview": "vite preview",
     "test": "vitest",
-    "prettier:check": "prettier --check .",
-    "prettier:format": "prettier --write ."
+    "prettier-format": "prettier --write 'src/**/*.{ts,tsx,js,scss,css,html}'",
+    "prettier-check": "prettier --check 'src/**/*.{ts,tsx,js,scss,css,html}'"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
