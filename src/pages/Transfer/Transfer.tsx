@@ -104,7 +104,7 @@ const Transfer = () => {
           >
             {approveStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
-                <CircularProgress size={28} />
+                <CircularProgress size={18} />
               </Box>
             ) : approveStatus.isConfirming ? (
               'Confirming...'
@@ -125,7 +125,7 @@ const Transfer = () => {
           >
             {txStatus.isPending ? (
               <Box display='flex' justifyContent='center'>
-                <CircularProgress size={28} />
+                <CircularProgress size={18} />
               </Box>
             ) : txStatus.isConfirming ? (
               'Confirming...'
