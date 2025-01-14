@@ -1,50 +1,73 @@
-# React + TypeScript + Vite
+# Wonderland Tech Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Wonderland Technical Challenge repository!
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+You can view the application deployed on production and development:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+  <li><a href="https://dev-wonderland-tec-challenge.vercel.app/" target="_blank">Development</a></li>
+  <li><a href="https://prod-wonderland-tec-challenge.vercel.app/" target="_blank">Production</a></li>
+</ul>
 
-## Expanding the ESLint configuration
+## 📦 Tools & Technologies
+This project utilizes the following technologies to ensure a smooth and modern development experience:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<ul>
+  <li><strong>TypeScript</strong></li>
+  <li><strong>Vite</strong></li>
+  <li><strong>Redux Toolkit</strong></li>
+  <li><strong>Material UI</strong></li>
+  <li><strong>RainbowKit</strong></li>
+  <li><strong>Viem & Wagmi</strong></li>
+  <li><strong>Vitest</strong></li>
+  <li><strong>ESLint & Prettier</strong>: For code quality control.</li>
+  <li><strong>GitFlow</strong>: Methodology for branching and deployment.</li>
+  <li><strong>Vercel</strong>: For hosting.</li>
+</ul>
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Getting Started:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+### Prerequisites
+<ul>
+  <li><a href="https://nodejs.org" target="_blank">Node.js</a> and <a href="https://yarnpkg.com/" target="_blank">Yarn</a> installed on your machine.</li>
+</ul>
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Installation
+1. Clone the repository:
+   <pre><code>git clone https://github.com/your-user/wonderland-tec-challenge.git</code></pre>
+2. Navigate to the project directory:
+   <pre><code>cd wonderland-tec-challenge</code></pre>
+3. Install the dependencies:
+   <pre><code>yarn</code></pre>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+### Running the Development Server
+Run the following command to start the local development server:
+<pre><code>yarn dev</code></pre>
+The application will be running at [http://localhost:3000](http://localhost:3000).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+### Running Tests
+To run the tests with Vitest, use the following command:
+<pre><code>yarn test</code></pre>
+
+### Linting & Formatting
+Lint and format the code with:
+<pre><code>yarn lint</code></pre>
+<pre><code>yarn prettier-formaT</code></pre>
+
+### Build
+To build the project for production:
+<pre><code>yarn build</code></pre>
+
+### Preview the Build
+Preview the build locally:
+<pre><code>yarn preview</code></pre>
+
+## ⚙️ GitHub Actions
+
+The project is setted up with GitHub Actions to automate linting, formatting, and testing:
+<ul>
+  <li>Linting with ESLint</li>
+  <li>Code formatting with Prettier</li>
+  <li>Running tests with Vitest</li>
+</ul>
