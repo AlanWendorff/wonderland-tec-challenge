@@ -15,8 +15,7 @@ const Root = () => {
         height: '100vh',
         textAlign: 'center',
         px: 2,
-      }}
-    >
+      }}>
       <Typography
         variant='h2'
         color='primary'
@@ -24,8 +23,7 @@ const Root = () => {
           fontWeight: 'bold',
           letterSpacing: '0.1em',
           textShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)',
-        }}
-      >
+        }}>
         Welcome to Wonderland Challenge
       </Typography>
 
@@ -37,8 +35,7 @@ const Root = () => {
             marginTop: 2,
             fontSize: '2rem',
             fontStyle: 'italic',
-          }}
-        >
+          }}>
           Connect wallet to start
         </Typography>
       )}
