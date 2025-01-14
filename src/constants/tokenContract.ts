@@ -25,7 +25,7 @@ const TOKEN_CONTRACT = {
     dai: {
       contract: {
         address: DAI_CONTRACT_ADDRESS_MUMBAI,
-        abi: DAI_CONTRACT_SEPOLIA,
+        abi: DAI_CONTRACT_SEPOLIA, // I didn't find mumbai's related token contracts and ABI's for dai and usdc
       },
       decimals: 18,
     },
