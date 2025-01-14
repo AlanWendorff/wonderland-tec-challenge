@@ -3,12 +3,12 @@ import {
   setIsCorrectNetwork,
   setIsWalletConnected,
 } from '@store/account/account.slice';
-import { CONFIG } from '../config/rainbowkit.config';
+import { CONFIG } from '../config/wagmi.config';
 import { watchAccount } from 'wagmi/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { Address } from 'viem';
 import { useChains } from 'wagmi';
+import { Address } from 'viem';
 
 const useNetwork = () => {
   const dispatch = useDispatch();
