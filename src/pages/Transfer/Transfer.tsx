@@ -1,6 +1,7 @@
 import { setSpender } from '@store/account/account.slice';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   Container,
   TextField,
@@ -21,7 +22,6 @@ const Transfer = () => {
   const dispatch = useDispatch();
   const [selectedToken, setSelectedToken] = useState<TTokenNames>('dai');
   const [walletAddress, setWalletAddress] = useState('');
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [amount, setAmount] = useState('');
 
   const { txStatus, handleTransfer } = useTransfer({ amount });
@@ -30,7 +30,6 @@ const Transfer = () => {
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const address = event.target.value as Address;
 
-    dispatch(setSpender(address));
     setWalletAddress(address);
   };
 
@@ -38,8 +37,9 @@ const Transfer = () => {
     setAmount(event.target.value);
   };
 
-  const handleIsSnackbarOpen = () => {
-    setIsSnackbarOpen(!isSnackbarOpen);
+  const handleSetSpender = () => {
+    toast.success('Spender setted');
+    dispatch(setSpender(walletAddress as Address));
   };
 
   return (
@@ -56,6 +56,14 @@ const Transfer = () => {
           value={walletAddress}
           onChange={handleAddressChange}
         />
+        <Button
+          color='primary'
+          variant='contained'
+          aria-label='approve token balance'
+          onClick={handleSetSpender}>
+          Set spender
+        </Button>
+
         <Select
           value={selectedToken}
           onChange={(e) => setSelectedToken(e.target.value as TTokenNames)}
@@ -89,7 +97,6 @@ const Transfer = () => {
             disabled={approveStatus.isPending || approveStatus.isConfirming}
             onClick={() => {
               handleApprove(walletAddress, selectedToken);
-              handleIsSnackbarOpen();
             }}
             sx={{ width: '48%' }}>
             {approveStatus.isPending ? (
@@ -110,7 +117,6 @@ const Transfer = () => {
             disabled={txStatus.isPending || txStatus.isConfirming}
             onClick={() => {
               handleTransfer(walletAddress, selectedToken);
-              handleIsSnackbarOpen();
             }}
             sx={{ width: '48%' }}>
             {txStatus.isPending ? (
