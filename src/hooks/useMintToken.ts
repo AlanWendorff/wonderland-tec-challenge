@@ -9,6 +9,7 @@ import TTokenNames from '../types/tokenNames.type';
 interface IUseMintTokenReturn {
   isConfirming: boolean;
   isPending: boolean;
+  isError: boolean;
   handleMintToken: (tokenName: TTokenNames) => void;
 }
 
@@ -57,6 +58,7 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
   return {
     isConfirming,
     isPending,
+    isError,
     handleMintToken,
   };
 };

@@ -12,14 +12,16 @@ const Header = () => {
 
   return (
     <AppBar position='fixed'>
-      <Container maxWidth='xl'>
+      <Container maxWidth='lg'>
         <Toolbar>
           <Box
             sx={{
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
               alignItems: 'center',
+              flexWrap: 'wrap',
               flexGrow: 1,
+              gap: 2,
             }}
           >
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -28,10 +30,12 @@ const Header = () => {
               <NavLink to={MINT}>Mint</NavLink>
             </Box>
 
-            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }} />
 
-            {isWalletConnected && isCorrectNetwork && <Balance />}
-            <ConnectButton />
+            <Box sx={{ display: 'flex' }}>
+              {isWalletConnected && isCorrectNetwork && <Balance />}
+              <ConnectButton />
+            </Box>
           </Box>
         </Toolbar>
       </Container>
@@ -40,3 +44,4 @@ const Header = () => {
 };
 
 export default Header;
+
