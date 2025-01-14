@@ -22,12 +22,17 @@ const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
   const { chain } = useAccount();
 
   const { data: hash, isPending, writeContract } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+  const {
+    isLoading: isConfirming,
+    isSuccess: isConfirmed,
+    isError,
+    error,
+  } = useWaitForTransactionReceipt({
     hash,
   });
 
   const handleApprove = async (spender: string, tokenName: TTokenNames) => {
-    if (spender == '') {
+    if (spender === '') {
       toast.error('You need to write a spender address');
       return;
     }
@@ -51,7 +56,11 @@ const useApprove = ({ amount }: IUseApproveProps): IuseApproveReturn => {
     if (isConfirmed) {
       toast.success('¡Approval successful!');
     }
-  }, [isConfirmed]);
+
+    if (isError) {
+      toast.success(`Error ${error}`);
+    }
+  }, [error, isConfirmed, isError]);
 
   return {
     approveStatus: {

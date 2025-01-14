@@ -20,12 +20,17 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
   const { address, chain } = useAccount();
 
   const { data: hash, isPending, writeContract } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+  const {
+    isLoading: isConfirming,
+    isSuccess: isConfirmed,
+    isError,
+    error,
+  } = useWaitForTransactionReceipt({
     hash,
   });
 
   const handleMintToken = async (tokenName: TTokenNames) => {
-    if (!amount) {
+    if (amount === '') {
       toast.error('Specify the amount');
       return;
     }
@@ -43,7 +48,11 @@ const useMintToken = ({ amount }: IUseMintTokenProps): IUseMintTokenReturn => {
     if (isConfirmed) {
       toast.success('¡Mint successful!');
     }
-  }, [isConfirmed]);
+
+    if (isError) {
+      toast.success(`Error ${error}`);
+    }
+  }, [error, isConfirmed, isError]);
 
   return {
     isConfirming,
